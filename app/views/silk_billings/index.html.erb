@@ -1,0 +1,54 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>Listing Silk Billings</h1>
+<table class="wide-table" id="gradient-style" >
+  <tr>
+  	<th align = 'left'><%= Translate.trans("Vendor Name",session[:language])%></th>
+  	<th align = 'left'><%= Translate.trans("Date",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Received Silk (gm)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Silk Type",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Rate (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Discount (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Advance Amount (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Amount To Vendor (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Return Qty",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Remarks",session[:language])%></th>
+	<th align = 'center' colspan = '3'><%= Translate.trans("Options",session[:language])%></th>
+  </tr>
+<% for silk_billing in @silk_billings %>
+  <tr>
+  	<% vendor =  Vendor.find_by_id(silk_billing.vendor_id) %>
+  	<td><%= h vendor.name%></td>
+    <td><%=h silk_billing.date.strftime("%d/%m/%y") %></td>
+    <td><%=h silk_billing.received_silk %></td>
+    <td><%=h silk_billing.description %></td>
+    <td><%=h silk_billing.rate %></td>
+    <td><%=h silk_billing.discount %></td>
+    <td><%=h silk_billing.adv_amt %></td>
+    <td><%=h silk_billing.amt_to_vendor %></td>
+    <td><%=h silk_billing.return_qty %></td>
+    <td><%=h silk_billing.remarks %></td>
+    <td><%= link_to image_tag( 'show.png'), silk_billing %></td>
+    <td><%= link_to image_tag( 'edit.png'), edit_silk_billing_path(silk_billing) %></td>
+    <td><%= link_to image_tag( 'delete.png'), silk_billing, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to image_tag( 'new.png'), new_silk_billing_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+

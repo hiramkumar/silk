@@ -1,0 +1,68 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Client:</b>
+  <%= @client_billing.client_id %>
+</p>
+
+<p>
+  <b>Order type:</b>
+  <%= @client_billing.order_type %>
+</p>
+
+<p>
+  <b>No of sarees:</b>
+  <%= @client_billing.no_of_sarees %>
+</p>
+
+<p>
+  <b>Cost price:</b>
+  <%= @client_billing.cost_price %>
+</p>
+
+<p>
+  <b>Discount:</b>
+  <%= @client_billing.discount %>
+</p>
+
+<p>
+  <b>Rcd amount:</b>
+  <%= @client_billing.rcd_amount %>
+</p>
+
+<p>
+  <b>Advance:</b>
+  <%= @client_billing.advance %>
+</p>
+
+<p>
+  <b>Balance amt:</b>
+  <%= @client_billing.balance_amt %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @client_billing.date %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @client_billing.description %>
+</p>
+
+<p>
+  <b>Returned sarees:</b>
+  <%= @client_billing.returned_sarees %>
+</p>
+
+<p>
+  <b>Reason:</b>
+  <%= @client_billing.reason %>
+</p>
+
+
+<%= link_to 'Edit', edit_client_billing_path(@client_billing) %> |
+<%= link_to 'Back', client_billings_path %>

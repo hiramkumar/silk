@@ -1,0 +1,68 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<%= form_for(@client_billing) do |f| %>
+  <% if @client_billing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client_billing.errors.count, "error") %> prohibited this client_billing from being saved:</h2>
+
+      <ul>
+      <% @client_billing.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :client_id %><br />
+    <%= f.text_field :client_id %>
+  </div>
+  <div class="field">
+    <%= f.label :order_type %><br />
+    <%= f.text_field :order_type %>
+  </div>
+  <div class="field">
+    <%= f.label :no_of_sarees %><br />
+    <%= f.text_field :no_of_sarees %>
+  </div>
+  <div class="field">
+    <%= f.label :cost_price %><br />
+    <%= f.text_field :cost_price %>
+  </div>
+  <div class="field">
+    <%= f.label :discount %><br />
+    <%= f.text_field :discount %>
+  </div>
+  <div class="field">
+    <%= f.label :rcd_amount %><br />
+    <%= f.text_field :rcd_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :advance %><br />
+    <%= f.text_field :advance %>
+  </div>
+  <div class="field">
+    <%= f.label :balance_amt %><br />
+    <%= f.text_field :balance_amt %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :returned_sarees %><br />
+    <%= f.text_field :returned_sarees %>
+  </div>
+  <div class="field">
+    <%= f.label :reason %><br />
+    <%= f.text_field :reason %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

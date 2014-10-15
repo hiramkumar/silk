@@ -1,0 +1,32 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<%= form_for(@login_detail) do |f| %>
+  <% if @login_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@login_detail.errors.count, "error") %> prohibited this login_detail from being saved:</h2>
+
+      <ul>
+      <% @login_detail.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :login %><br />
+    <%= f.datetime_select :login %>
+  </div>
+  <div class="field">
+    <%= f.label :logout %><br />
+    <%= f.datetime_select :logout %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

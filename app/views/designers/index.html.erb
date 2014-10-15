@@ -1,0 +1,52 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>Listing Designer Billings</h1>
+<table class="wide-table" id="gradient-style" >
+  <tr>
+  	<th align = 'left'><%= Translate.trans("Vendor Name",session[:language])%></th>
+  	<th align = 'left'><%= Translate.trans("Date",session[:language])%></th>
+  	<th align = 'left'><%= Translate.trans("Design",session[:language])%></th>
+  	<th align = 'left'><%= Translate.trans("Expected Date",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Description",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Rate (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Discount (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Advance Amount (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Amount To Vendor (₹)",session[:language])%></th>
+	<th align = 'center' colspan = '3'><%= Translate.trans("Options",session[:language])%></th>
+  </tr>
+<% for designer in @designers %>
+  <tr>
+  	<% vendor =  Vendor.find_by_id(designer.vendor_id) %>
+  	<td><%= h vendor.name%></td>
+    <td><%=h designer.date.strftime("%d/%m/%y") %></td>
+    <td><%=h designer.design_id %></td>
+    <td><%=h designer.due_date.strftime("%d/%m/%y") %></td>
+    <td><%=h designer.description %></td>
+    <td><%=h designer.rate %></td>
+    <td><%=h designer.discount %></td>
+     <td><%=h designer.advance %></td>
+     <td><%=h designer.amt_to_vendor %></td>
+    <td><%= link_to image_tag( 'show.png'), designer %></td>
+    <td><%= link_to image_tag( 'edit.png'), edit_designer_path(designer) %></td>
+    <td><%= link_to image_tag( 'delete.png'), designer, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to image_tag( 'new.png'), new_designer_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+

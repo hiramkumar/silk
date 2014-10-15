@@ -1,0 +1,50 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>Listing Dyers Billing</h1>
+
+<table class="wide-table" id="gradient-style" >
+  <tr>
+    <th align = 'left'><%= Translate.trans("Worker Name",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Date",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Salary Amount (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Advance Amount (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Advance Reduction (₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Raw Warp To Dyer (gm)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Warp Length",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Raw Silk To Dyer (gm)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Coloured Warp From Dyer (gm)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Coloured Silk From Dyer (gm)",session[:language])%></th>
+	<th align = 'center' colspan = '3'><%= Translate.trans("Options",session[:language])%></th>
+  </tr>
+
+<% for dye in @dyes %>
+  <tr>
+  	<% worker = Worker.find_by_id(dye.worker_id)%>
+  	
+    <td><%=h worker.first_name if worker != nil%><%=h worker.last_name if worker != nil%></td>
+    <td ><%=h dye.date.strftime("%d/%m/%y") %></td>
+    <td><%=h dye.salary %></td>
+    <td><%=h dye.advance_amount %></td>
+    <td><%=h dye.advance_reduction %></td>
+    <td><%=h dye.raw_warp_to_dyer %></td>
+    <td><%=h dye.warp_length %></td>
+    <td><%=h dye.raw_silk_to_dyer %></td>
+    <td><%=h dye.coloured_warp_from_dyer %></td>
+    <td><%=h dye.coloured_silk_from_dyer %></td>
+    <td><%= link_to image_tag( 'show.png'), dye %></td>
+    <td><%= link_to image_tag( 'edit.png'), edit_dye_path(dye) %></td>
+    <td><%= link_to image_tag( 'delete.png'), dye, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<table width = '100%' align = 'left' style=" font-style: italic; font-family: Times New Roman; ">
+	<tr>
+		<td>
+			<%= will_paginate @dyes   %>
+		</td>
+	</tr>
+</table>
+<br />
+
+<%= link_to image_tag( 'new.png'), new_dye_path %>

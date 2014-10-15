@@ -1,0 +1,48 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>Listing client_billings</h1>
+
+<table>
+  <tr>
+    <th>Client</th>
+    <th>Order type</th>
+    <th>No of sarees</th>
+    <th>Cost price</th>
+    <th>Discount</th>
+    <th>Rcd amount</th>
+    <th>Advance</th>
+    <th>Balance amt</th>
+    <th>Date</th>
+    <th>Description</th>
+    <th>Returned sarees</th>
+    <th>Reason</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @client_billings.each do |client_billing| %>
+  <tr>
+    <td><%= client_billing.client_id %></td>
+    <td><%= client_billing.order_type %></td>
+    <td><%= client_billing.no_of_sarees %></td>
+    <td><%= client_billing.cost_price %></td>
+    <td><%= client_billing.discount %></td>
+    <td><%= client_billing.rcd_amount %></td>
+    <td><%= client_billing.advance %></td>
+    <td><%= client_billing.balance_amt %></td>
+    <td><%= client_billing.date %></td>
+    <td><%= client_billing.description %></td>
+    <td><%= client_billing.returned_sarees %></td>
+    <td><%= client_billing.reason %></td>
+    <td><%= link_to 'Show', client_billing %></td>
+    <td><%= link_to 'Edit', edit_client_billing_path(client_billing) %></td>
+    <td><%= link_to 'Destroy', client_billing, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Client billing', new_client_billing_path %>

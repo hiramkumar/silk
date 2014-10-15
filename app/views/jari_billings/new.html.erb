@@ -1,0 +1,59 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>New jari_billing</h1>
+
+<% form_for(@jari_billing) do |f| %>
+  <%= f.error_messages %>
+  
+  <p>
+    <%= Translate.trans("Vendor Name",session[:language])%>
+    <%= f.collection_select(:vendor_id,@vendors,:id,:name,:prompt =>0) %>
+  </p>
+  
+  <p>
+    <%= Translate.trans("Date",session[:language])%>
+    <%= f.date_select :date, :order => [:day, :month, :year]  %>
+  </p>
+  <p>
+    <%= Translate.trans("Received Qty",session[:language])%><br />
+    <%= f.text_field :received_qty %>
+  </p>
+  <p>
+    <%= Translate.trans("Jari Type",session[:language])%><br />
+    <%= f.text_field :jari_type %>
+  </p>
+  <p>
+    <%= Translate.trans("Rate(₹)",session[:language])%><br />
+    <%= f.text_field :rate %>
+  </p>
+  <p>
+    <%= Translate.trans("Discount(₹)",session[:language])%><br />
+    <%= f.text_field :discount %>
+  </p>
+  <p>
+    <%= Translate.trans("Advance Amount(₹)",session[:language])%><br />
+    <%= f.text_field :advance_amount %>
+  </p>
+  <p>
+    <%= Translate.trans("Amount To Vendor(₹)",session[:language])%><br />
+    <%= f.text_field :amount_to_vendor %>
+  </p>
+  <p>
+    <%= Translate.trans("Description",session[:language])%><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= Translate.trans("Batch No",session[:language])%><br />
+    <%= f.text_field :batch_no %>
+  </p>
+  <p>
+    <%= Translate.trans("Remarks",session[:language])%><br />
+    <%= f.text_field :remarks %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', jari_billings_path %>

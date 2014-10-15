@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  item_code: MyString
+  description: MyString
+  image_id: 1
+  warp: 1
+  silk: 1
+  warp_cotton: 1
+  weaving_cotton: 1
+  jari: MyString
+  jute: MyString
+  expect_weight: 1
+
+two:
+  item_code: MyString
+  description: MyString
+  image_id: 1
+  warp: 1
+  silk: 1
+  warp_cotton: 1
+  weaving_cotton: 1
+  jari: MyString
+  jute: MyString
+  expect_weight: 1

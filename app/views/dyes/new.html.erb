@@ -1,0 +1,64 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<table width = '100%' style=" font-style: italic; font-family: Times New Roman;">
+<h1>New Entry</h1>
+
+<% form_for(@dye) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= Translate.trans("Worker Name",session[:language])%>
+    <%= f.collection_select(:worker_id,@workers,:id,:first_name,:prompt =>0) %>
+  </p>
+  <p>
+    <%= Translate.trans("Date",session[:language])%><br />
+    <%= f.date_select :date, :order => [:day, :month, :year] %>
+  </p>
+  <p>
+    <%= Translate.trans("Salary Amount(₹)",session[:language])%><br />
+    <%= f.text_field :salary %>
+  </p>
+  <p>
+    <%= Translate.trans("Advance Amount(₹)",session[:language])%><br />
+    <%= f.text_field :advance_amount %>
+  </p>
+  <p>
+    <%= Translate.trans("Advance Reduction(₹)",session[:language])%><br />
+    <%= f.text_field :advance_reduction %>
+  </p>
+  <p>
+    <%= Translate.trans("Raw Warp To Dyer(gm)",session[:language])%><br />
+    <%= f.text_field :raw_warp_to_dyer %>
+  </p>
+  <p>
+    <%= Translate.trans("Warp Length",session[:language])%><br />
+    <%= f.text_field :warp_length %>
+  </p>
+  <p>
+    <%= Translate.trans("Raw Silk To Dyer(gm)",session[:language])%><br />
+    <%= f.text_field :raw_silk_to_dyer %>
+  </p>
+  <p>
+    <%= Translate.trans("Coloured Warp From Dyer(gm)",session[:language])%><br />
+    <%= f.text_field :coloured_warp_from_dyer %>
+  </p>
+  <p>
+    <%= Translate.trans("Coloured Silk From Dyer(gm)",session[:language])%><br />
+    <%= f.text_field :coloured_silk_from_dyer %>
+  </p>
+ 
+  <p>
+    <%= submit_tag "Create", :class => 'buttons',:onclick => 'return page()' %>
+  </p>
+ <% end %>
+</table>
+<%= link_to 'Back', dyes_path %>
+
+<script>
+function page(){
+         alert($F('dye_salary'));
+         return false;
+         
+    }
+
+</script>

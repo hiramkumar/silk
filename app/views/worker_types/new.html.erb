@@ -1,0 +1,37 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>New worker_type</h1>
+<table border = '1' 	class="curvedEdges">
+<% form_for(@worker_type) do |f| %>
+  <%= f.error_messages %>
+<tr>
+	<td>
+		<%= Translate.trans("Name",session[:language])%>:
+    	<%= f.text_field :name %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<%= Translate.trans("Status",session[:language])%>
+	<%= f.select :status, [['Active', 'Active'], ['InActive', 'InActive']]%>
+	</td>
+</tr>
+<tr>
+	<td>
+		<%= image_submit_tag("create.jpg") %>
+	</td>
+<% end %>
+</table>
+<%= link_to image_tag( 'white_back.jpg'), worker_types_path,:onClick => "return abc()" %>
+<script>
+    function page(){
+        if ($F('worker_type_name') == "") {
+            alert("Worker Type Should Not Blank")
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

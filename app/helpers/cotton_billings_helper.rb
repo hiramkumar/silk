@@ -1,0 +1,2 @@
+module CottonBillingsHelper
+end

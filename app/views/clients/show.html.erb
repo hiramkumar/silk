@@ -1,0 +1,38 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= Translate.trans("Name",session[:language])%>:</b>
+  <%= @client.name %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Contact Name",session[:language])%>:</b>
+  <%= @client.contact_name %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Address",session[:language])%>:</b>
+  <%= @client.address %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Phone No",session[:language])%>:</b>
+  <%= @client.ph_no %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Email",session[:language])%>:</b>
+  <%= @client.email %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Status",session[:language])%>:</b>
+  <%= @client.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>

@@ -1,0 +1,55 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>Editing silk_billing</h1>
+
+<% form_for(@silk_billing) do |f| %>
+  <%= f.error_messages %>
+  
+  <p>
+    <%= "Vendor Name:"%>
+    <%= f.collection_select(:vendor_id,@vendors,:id,:name,:prompt =>0) %>
+  </p>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.date_select :date, :order => [:day, :month, :year]  %>
+  </p>
+  <p>
+    <%= f.label :silk_type %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :received_silk %><br />
+    <%= f.text_field :received_silk %>
+  </p>
+  <p>
+    <%= f.label :rate %><br />
+    <%= f.text_field :rate %>
+  </p>
+  <p>
+    <%= f.label :discount %><br />
+    <%= f.text_field :discount %>
+  </p>
+  <p>
+    <%= f.label :adv_amt %><br />
+    <%= f.text_field :adv_amt %>
+  </p>
+  <p>
+    <%= f.label :amt_to_vendor %><br />
+    <%= f.text_field :amt_to_vendor %>
+  </p>
+  <p>
+    <%= f.label :return_qty %><br />
+    <%= f.text_field :return_qty %>
+  </p>
+  <p>
+    <%= f.label :remarks %><br />
+    <%= f.text_field :remarks %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @silk_billing %> |
+<%= link_to 'Back', silk_billings_path %>

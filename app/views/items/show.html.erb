@@ -1,0 +1,58 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<table width = '50%' border = '1' style=" font-style: italic; font-family: Times New Roman;" border="1" 	class="curvedEdges">
+	<tr>
+		<td>
+  <b><%= Translate.trans("Item Code",session[:language])%>:</b>
+  <%=h @item.item_code %>		</td>
+	</tr>
+	<tr>
+		<td>
+  <b><%= Translate.trans("Description",session[:language])%>:</b>
+  <%=h @item.description %>		</td>
+	</tr>
+	<tr>
+		<td>
+  <b><%= Translate.trans("Image",session[:language])%>:</b>
+  <%=h @item.image_id %>		</td>
+	</tr>
+	<tr>
+		<td>
+  <b><%= Translate.trans("Warp",session[:language])%>:</b>
+  <%=h @item.warp %>		</td>
+	</tr>
+	<tr>
+		<td>
+  <b><%= Translate.trans("Silk",session[:language])%>:</b>
+  <%=h @item.silk %>		</td>
+	</tr>
+	<tr>
+		<td>
+  <b><%= Translate.trans("Warp Cotton(gm)",session[:language])%>:</b>
+  <%=h @item.warp_cotton %>		</td>
+	</tr>
+	<tr>
+		<td>
+  <b><%= Translate.trans("Weaving Cotton",session[:language])%>:</b>
+  <%=h @item.weaving_cotton %>		</td>
+	</tr>
+	<tr>
+		<td>
+  <b><%= Translate.trans("Jari",session[:language])%>:</b>
+  <%=h @item.jari %>		</td>
+	</tr>
+	<tr>
+		<td>
+  <b><%= Translate.trans("Jute",session[:language])%>:</b>
+  <%=h @item.jute %>		</td>
+	</tr>
+	<tr>
+		<td>
+  <b><%= Translate.trans("Expected Weight",session[:language])%>:</b>
+  <%=h @item.expect_weight %>		</td>
+	</tr>
+</table>
+<%= link_to image_tag( 'edit.jpg'), edit_item_path(@item) %> 
+<%= link_to image_tag( 'white_back.jpg'), items_path %>
+<%= submit_tag "Print", :class=>"buttons",:onclick=>"window.print();" %>

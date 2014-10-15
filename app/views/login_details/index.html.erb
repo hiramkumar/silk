@@ -1,0 +1,38 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>LogIn & LogOut Details</h1>
+
+<table class="wide-table" id="gradient-style" >
+  <tr>
+    <th>User Name</th>
+    <th>Login Date&Time</th>
+    <th>Logout Date&Time</th>
+  </tr>
+
+<% @login_details.each do |login_detail| %>
+  <tr>
+  	<%user = User.find_by_id(login_detail.user)%>
+    <td><%= user.name %></td>
+    <%if login_detail.login_time != nil && login_detail.login != nil%>
+    	<td><%= login_detail.login.strftime("%d/%m/%Y") %><br/><%= login_detail.login_time.strftime("%I:%M:%S") %></td>
+    <%else%>
+    	<td></td>
+    <%end%>
+    <%if login_detail.logout != nil && login_detail.logout_time != nil%>
+    	<td><%= login_detail.logout.strftime("%d/%m/%Y") %><br/><%= login_detail.logout_time.strftime("%I:%M:%S") %></td>
+    <%else%>
+    	<td></td>
+    <%end%>
+  </tr>
+<% end %>
+</table>
+<table width = '100%' align = 'left' style=" font-style: italic; font-family: Times New Roman; ">
+	<tr>
+		<td>
+			<%= will_paginate @login_details   %>
+		</td>
+	</tr>
+</table>
+<br />
+

@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  client_id: 1
+  order_type: MyString
+  no_of_sarees: MyString
+  cost_price: MyString
+  discount: MyString
+  rcd_amount: MyString
+  advance: MyString
+  balance_amt: MyString
+  date: 2012-12-06
+  description: MyString
+  returned_sarees: MyString
+  reason: MyString
+
+two:
+  client_id: 1
+  order_type: MyString
+  no_of_sarees: MyString
+  cost_price: MyString
+  discount: MyString
+  rcd_amount: MyString
+  advance: MyString
+  balance_amt: MyString
+  date: 2012-12-06
+  description: MyString
+  returned_sarees: MyString
+  reason: MyString

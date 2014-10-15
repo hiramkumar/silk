@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 1
+  login: 2012-11-19 17:15:17
+  logout: 2012-11-19 17:15:17
+
+two:
+  user: 1
+  login: 2012-11-19 17:15:17
+  logout: 2012-11-19 17:15:17

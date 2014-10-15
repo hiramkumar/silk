@@ -1,0 +1,84 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<div style=" font-style: italic; font-family: Times New Roman; font-size: 20px;font-weight: bold;" align = 'center'><%= Translate.trans("Receipt",session[:language])%></div>
+<div style=" font-style: italic; font-family: Times New Roman; font-size: 15px;font-weight: bold;" align = 'center'><%= Translate.trans("As On Date",session[:language])%>:<%= Time.now.strftime("%d/%m/%y")%></div>
+<table width = '100%' align = 'center' style=" font-style: italic; font-family: Times New Roman;" >
+	<% vendor = Vendor.find_by_id(@cotton_billing.vendor_id)%>
+	<%ven_tpe = VendorType.find_by_id(vendor.vendor_type_id)%>
+	<tr><td colspan = '6'><hr></td></tr>
+  <tr>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Vendor Id",session[:language])%></b></td><td align = 'left' width = '20%'>:<%= vendor.id%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Vendor Name",session[:language])%>	</b></td><td align = 'left' width = '20%'>:<%= vendor.name%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Address",session[:language])%></b></td><td align = 'left' width = '30%'>:<%= vendor.address%></td>
+ </tr>
+ <tr>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Person Name",session[:language])%></b><td align = 'left' width = '20%'>:<%= vendor.person_name%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Phone No",session[:language])%>.</b><td align = 'left' width = '20%'>:<%= vendor.phone_no%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Supplier Type",session[:language])%></b><td align = 'left' width = '30%'>:<%= ven_tpe.name%></td>
+  </tr>
+<tr><td colspan = '6'><hr></td></tr>
+</table>
+<table width = '100%' align = 'center' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+	<th align = 'left'><%= Translate.trans("Slno",session[:language])%>.</th>
+    <th align = 'left'><%= Translate.trans("Bill No",session[:language])%>.</th>
+    <th align = 'left'><%= Translate.trans("Entry Date",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Received Qty",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Cotton Type",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Rate(₹)",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Discount(₹)",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Amount To Vendor(₹)",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Advance Amount(₹)",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Return Qty",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Remarks",session[:language])%></th>
+  </tr>
+  	<%re_qty = 0%><%rte = 0%><%amt = 0%><%adv = 0%><%dis = 0%><%sl = 0%><%ret = 0%>
+<tr>
+	<td><%=sl += 1 %></td>
+	<td><%=h @cotton_billing.id %></td>
+    <td><%=h @cotton_billing.date.strftime("%d/%m/%y")%></td>
+    <td align = 'right'><%=h number_with_precision(@cotton_billing.received_qty.to_f.round.abs,:precision => 2)%></td>
+    <%re_qty += @cotton_billing.received_qty.to_f%>
+    <td align = 'right'><%=h  @cotton_billing.description%></td>
+    <td align = 'right'><%=h  number_with_precision(@cotton_billing.rate.to_f.round.abs,:precision => 2)%></td>
+    <%rte += @cotton_billing.rate.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@cotton_billing.discount.to_f.round.abs,:precision => 2)%></td>
+    <%dis +=  @cotton_billing.discount.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@cotton_billing.amt_to_vendor.to_f.round.abs,:precision => 2)%></td>
+    <%amt += @cotton_billing.amt_to_vendor.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@cotton_billing.adv_amt.to_f.round.abs,:precision => 2)%></td>
+    <%adv += @cotton_billing.adv_amt.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@cotton_billing.return_qty.to_f.round.abs,:precision => 2)%></td>
+    <%ret +=  @cotton_billing.return_qty.to_f %>
+    <td align = 'right'><%=h  @cotton_billing.remarks%></td>
+</tr>
+<tr>
+	<td><b><%="Total:" %></b></td>
+	<td></td>
+	<td></td>
+	<td align = 'right'><b><%=h number_with_precision(re_qty.to_f.round.abs,:precision => 2)%></b></td>
+	<td align = 'right'></td>
+	<td align = 'right'><b><%=h number_with_precision(rte.to_f.round.abs,:precision => 2)%></b></td>
+	<td align = 'right'><b><%=h number_with_precision(dis.to_f.round.abs,:precision => 2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(amt.to_f.round.abs,:precision => 2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(adv.to_f.round.abs,:precision => 2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(ret.to_f.round.abs,:precision => 2) %></b></td>
+	<td align = 'right'></td>
+</tr>
+</table>
+<table>
+<tr>
+	<td class='noprint'>
+		<%= link_to 'Edit', edit_cotton_billing_path(@cotton_billing) %> ||
+	</td>
+	<td class='noprint'>
+		<%= link_to 'Back', cotton_billings_path %>
+	</td>
+</tr>
+
+
+
+
+</table>
+
+<%= submit_tag "Print", :class=>"buttons",:onclick=>"window.print();" %>

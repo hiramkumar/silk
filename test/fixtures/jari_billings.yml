@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2012-09-11 11:29:52
+  received_qty: MyString
+  jari_type: MyString
+  rate: 1
+  discount: MyString
+  advance_amount: 1
+  amount_to_vendor: 1
+  description: MyString
+  batch_no: MyString
+  vendor_id: 1
+  remarks: MyString
+
+two:
+  date: 2012-09-11 11:29:52
+  received_qty: MyString
+  jari_type: MyString
+  rate: 1
+  discount: MyString
+  advance_amount: 1
+  amount_to_vendor: 1
+  description: MyString
+  batch_no: MyString
+  vendor_id: 1
+  remarks: MyString

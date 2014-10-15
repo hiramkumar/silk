@@ -1,0 +1,55 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+
+<h1>Listing Cotton Billings</h1>
+<table class="wide-table" id="gradient-style" >
+  <tr>
+  	<th><%= Translate.trans("Vendor Name",session[:language])%></th>
+  	<th><%= Translate.trans("Date",session[:language])%></th>
+    <th><%= Translate.trans("Received Qty",session[:language])%></th>
+    <th><%= Translate.trans("Cotton Type",session[:language])%></th>
+    <th><%= Translate.trans("Rate (₹)",session[:language])%></th>
+    <th><%= Translate.trans("Discount (₹)",session[:language])%></th>
+    <th><%= Translate.trans("Advance Amount (₹)",session[:language])%></th>
+    <th><%= Translate.trans("Amount To Vendor (₹)",session[:language])%></th>
+    <th><%= Translate.trans("Return Qty",session[:language])%></th>
+    <th><%= Translate.trans("Remarks",session[:language])%></th>
+	<th colspan = '3'><%= Translate.trans("Options",session[:language])%></th>
+  </tr>
+<% for cotton_billing in @cotton_billings %>
+  <tr>
+  	<% vendor =  Vendor.find_by_id(cotton_billing.vendor_id) %>
+  	<td><%= h vendor.name%></td>
+    <td><%=h cotton_billing.date.strftime("%d/%m/%y") %></td>
+    <td><%=h cotton_billing.received_qty %></td>
+    <td><%=h cotton_billing.description %></td>
+    <td><%=h cotton_billing.rate %></td>
+    <td><%=h cotton_billing.discount %></td>
+    <td><%=h cotton_billing.adv_amt %></td>
+    <td><%=h cotton_billing.amt_to_vendor %></td>
+    <td><%=h cotton_billing.return_qty %></td>
+    <td><%=h cotton_billing.remarks %></td>
+    <td><%= link_to image_tag( 'show.png'), cotton_billing %></td>
+    <td><%= link_to image_tag( 'edit.png'), edit_cotton_billing_path(cotton_billing) %></td>
+    <td><%= link_to image_tag( 'delete.png'), cotton_billing, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to image_tag( 'new.png'), new_cotton_billing_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+

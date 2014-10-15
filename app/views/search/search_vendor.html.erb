@@ -1,0 +1,40 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<!-- RamKumar-->
+<%if  flash[:message] == "alert"%>
+<table style="border:5px solid red;">
+	<tr><td>
+		<font size="4" >Select Any One Search Criteria.</font>
+	</td></tr>
+
+</table>
+<%end%>
+<div class = 'noprint'>
+<div  align='center'><b><%= "Search Vendors"%></b></div>
+<fieldset>
+<legend><b><%= "Search By"%></b></legend>
+<table width = '100%' style=" font-style: italic; font-family: Times New Roman;">
+	<% form_tag :action => 'view_vendor' do %>
+	<tr>
+		<td width = '10%'><%= Translate.trans("Supplier Type",session[:language])%>:</td><td width = '35%'><%= collection_select(:vendor,:type,@vendor_types,:id,:name,:prompt =>0) %></td>
+		<td width = '10%'><%= Translate.trans("Vendor Id",session[:language])%>:</td><td width = '35%'><%=text_field :weaver,:id%></td>
+	</tr>
+	<tr>
+		<td width = '10%'><%= Translate.trans("Person Name",session[:language])%>:</td><td width = '35%'><%=text_field :weaver, :name%></td>
+	    <td width = '10%'><%= Translate.trans("Vendor Name",session[:language])%>:</td><td width = '35%'><%=text_field :weaver, :vendor%></td>
+	</tr>
+	<tr>
+		 
+	     <td><%= Translate.trans("Phone No",session[:language])%>:</td><td><%=text_field :weaver,:ph_no%></td>
+	     <td><%= Translate.trans("Address",session[:language])%>:</td><td><%=text_field :weaver,:address%></td>
+    </tr>
+</table>
+</fieldset>
+</div>
+<br />
+<center><%= submit_tag "Search", :class=>"buttons" %></center>
+<%end%>
+		 <span id="image" style="display: none;" valign="top" align="right"><img src="/images/ajax-loader2.gif" alt="ajax_loader.gif"/></span>
+				
+     

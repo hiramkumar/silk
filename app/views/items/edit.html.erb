@@ -1,0 +1,56 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>Editing item</h1>
+
+<% form_for(@item) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= Translate.trans("Item Code",session[:language])%></br>
+    <%= f.text_field :item_code %>
+  </p>
+  <p>
+    <%= Translate.trans("Description",session[:language])%></th></br>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= Translate.trans("Image",session[:language])%></br>
+    <%= f.text_field :image_id %>
+  </p>
+  <p>
+    <%= Translate.trans("Warp",session[:language])%></br>
+    <%= f.text_field :warp %>
+  </p>
+  <p>
+    <%= Translate.trans("Silk",session[:language])%></br>
+    <%= f.text_field :silk %>
+  </p>
+  <p>
+    <%= Translate.trans("Warp Cotton(gm)",session[:language])%></br>
+    <%= f.text_field :warp_cotton %>
+  </p>
+  <p>
+    <%= Translate.trans("Weaving Cotton",session[:language])%></br>
+    <%= f.text_field :weaving_cotton %>
+  </p>
+  <p>
+    <%= Translate.trans("Jari",session[:language])%></br>
+    <%= f.text_field :jari %>
+  </p>
+  <p>
+    <%= Translate.trans("Jute",session[:language])%></br>
+    <%= f.text_field :jute %>
+  </p>
+  <p>
+    <%= Translate.trans("Expected Weight",session[:language])%></br>
+    <%= f.text_field :expect_weight %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @item %> |
+<%= link_to 'Back', items_path %>

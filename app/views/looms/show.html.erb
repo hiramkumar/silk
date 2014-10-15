@@ -1,0 +1,136 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<div style=" font-style: italic; font-family: Times New Roman; font-size: 20px;font-weight: bold;" align = 'center'><%= Translate.trans("Receipt",session[:language])%></div>
+<div style=" font-style: italic; font-family: Times New Roman; font-size: 15px;font-weight: bold;" align = 'center'><%= Translate.trans("As On Date",session[:language])%>:<%= Time.now.strftime("%d/%m/%y")%></div>
+<table width = '100%' align = 'center' style=" font-style: italic; font-family: Times New Roman;" >
+	<% worker = Worker.find_by_id(@loom.worker_id)%>
+	<%title = Title.find_by_id(worker.title_id)%>
+	<tr><td colspan = '6'><hr></td></tr>
+  <tr>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Name(Type)",session[:language])%>:</b></td><td align = 'left' width = '20%'>:<%= title.name%><%= worker.first_name%>&nbsp;<%= worker.last_name%>(Weaver)</td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Age",session[:language])%>:</b></td><td align = 'left' width = '20%'>:<%= worker.age%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Address",session[:language])%>:</b></td><td align = 'left' width = '30%'>:<%= worker.address1%>&nbsp;<%= worker.address2%></td>
+ </tr>
+ <tr>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Referred By",session[:language])%>:</b><td align = 'left' width = '20%'>:<%= worker.referred_by%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Phone No",session[:language])%>:</b><td align = 'left' width = '20%'>:<%= worker.phone_no%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("DOJ",session[:language])%>:</b><td align = 'left' width = '30%'>:<%= worker.created_at.strftime("%d/%m/%y")%></td>
+  </tr>
+<tr><td colspan = '6'><hr></td></tr>
+</table>
+<table width = '100%' align = 'center' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+	<th align = 'left'style="font-size: 12px;"><%= Translate.trans("Slno",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Bill No",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Entry Date",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Salary Amount(₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Advance Amount(₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Advance Reduction(₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Warp To Weaver(gm)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Warp Length",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Silk To Weaver(gm)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Jari To Weaver",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Jute To Weaver",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Weaving Cotton",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Warp Cotton(gm)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Sarees From Weaver",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Weight Of Sarees",session[:language])%> </th>
+  </tr>
+  	<%sal = 0%><%adv = 0%><%red = 0%><%wap = 0%><%slk = 0%><%jri = 0%><%jte = 0%><%wap_ctn = 0%><%wea_ctn = 0%><%sre_wt = 0%><%sre = 0%><%sl=0%><%length = 0%>
+<tr>
+	<td><%=sl += 1 %></td>
+	<td><%=h @loom.id %></td>
+    <td><%=h @loom.entry_date.strftime("%d/%m/%y")%></td>
+    <td align = 'right'><%=h number_with_precision(@loom.salary_amount.to_f.round,:precision => 2)%></td>
+    <%sal += @loom.salary_amount.to_f%>
+    <td align = 'right'><%=h  number_with_precision(@loom.advance_amount.to_f.round.abs,:precision => 2)%></td>
+    <%adv += @loom.advance_amount.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@loom.advance_reduction.to_f.round.abs,:precision => 2)%></td>
+    <%red += @loom.advance_reduction.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@loom.warp_to_weaver.to_f.round.abs,:precision => 2)%></td>
+    <%wap += @loom.warp_to_weaver.to_f %>
+    <td align = 'right'><%=h  @loom.warp_length.to_i%></td>
+    <%length += @loom.warp_length.to_i %>
+    <td align = 'right'><%=h  number_with_precision(@loom.silk_to_weaver.to_f.round.abs,:precision => 2)%></td>
+    <%slk += @loom.silk_to_weaver.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@loom.jari_to_weaver.to_f.round.abs,:precision => 2)%></td>
+    <%jri += @loom.jari_to_weaver.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@loom.jute_to_weaver.to_f.round.abs,:precision => 2)%></td>
+    <%jte += @loom.jute_to_weaver.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@loom.weaving_cotton.to_f.round.abs,:precision => 2)%></td>
+    <%wea_ctn +=  @loom.weaving_cotton.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@loom.warp_cotton.to_f.round.abs,:precision => 2)%></td>
+    <%wap_ctn +=  @loom.warp_cotton.to_f %>
+    <td align = 'right'><%=h @loom.sarees_from_weaver %></td>
+    <%sre += @loom.sarees_from_weaver.to_i %>
+    <td align = 'right'><%=h number_with_precision(@loom.saree_weight.to_f.round.abs,:precision => 2) %></td>
+    <%sre_wt += @loom.saree_weight.to_f	 %>
+</tr>
+<tr>
+	<td><b><%="Total:" %></b></td>
+	<td></td>
+	<td></td>
+	<td align = 'right'><b><%=h number_with_precision(sal.to_f.round.abs,:precision => 2)%></b></td>
+	<td align = 'right'><b><%=h number_with_precision(adv.to_f.round.abs,:precision => 2)%></b></td>
+	<td align = 'right'><b><%=h number_with_precision(red.to_f.round.abs,:precision => 2)%></b></td>
+	<td align = 'right'><b><%=h number_with_precision(wap.to_f.round.abs,:precision => 2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(length.to_f.round.abs,:precision => 2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(slk.to_f.round.abs,:precision => 2)%></b></td>
+	<td align = 'right'><b><%=h number_with_precision(jri.to_f.round.abs,:precision => 2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(jte.to_f.round.abs,:precision => 2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(wea_ctn.to_f.round.abs,:precision => 2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(wap_ctn.to_f.round.abs,:precision => 2)%></b></td>
+	<td align = 'right'><b><%=h sre %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(sre_wt.to_f.round.abs,:precision => 2)%></b></td>
+</tr>
+</table>
+<table>
+	    <%message = Hash.new%>
+    <% message["Bill No:"] = @loom.id%>
+    <% if sal != 0.0%>
+    	<%message["Sal Amt(Rs.)"] =  sal.to_f.round%>
+    <%end%>
+    <% if adv != 0.0%>
+    	<% message["Adv Amt(Rs.)"] = adv.to_f.round%>
+    <%end%>
+    <% if red != 0.0%>
+    	<% message["Adv Redu(Rs.)"] = red.to_f.round%>
+    <%end%>
+    <% if wap != 0.0%>
+    	<% message["Warp(gm)"] = wap.to_f.round%>
+    <%end%>
+    <% if slk != 0.0%>
+    	<% message["Silk(gm)"] = slk.to_f.round%>
+    <%end%>
+    <% if jri != 0.0%>
+    	<% message["Jari"] = jri.to_f.round%>
+    <%end%>
+    <% if jte != 0.0%>
+    	<% message["Jute"] = jte.to_f.round%>
+    <%end%>
+    <% if wea_ctn != 0.0%>
+    	<% message["Weav Cotton(gm)"] = wea_ctn.to_f.round%>
+    <%end%>
+    <% if wap_ctn != 0.0%>
+    	<% message["Warp Cotton(gm)"] = wap_ctn.to_f.round%>
+    <%end%>
+    <% if sre != 0.0%>
+    	<% message["Saree"] = sre%>
+    <%end%>
+    <% if sre_wt != 0.0%>
+    	<% message["Saree Weight(gm)"] = sre_wt.to_f.round%>
+    <%end%>
+<tr>
+	<td class='noprint'>
+		<%= link_to 'Edit', edit_loom_path(@loom) %> 
+	</td>
+	<td class='noprint'>
+		<%= link_to 'Back', looms_path %>
+	</td>
+	<td class='noprint'>
+		<a href="http://ubaid.tk/sms/sms.aspx?uid=7204712489&pwd=ram2india&msg=<%= message %>&phone=<%= worker.phone_no%>&provider=way2sms" target='_blank'>Send SMS</a> 
+	</td>
+</tr>
+
+</table>
+<%= submit_tag "Print", :class=>"buttons",:onclick=>"window.print();" %>

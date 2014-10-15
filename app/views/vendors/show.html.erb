@@ -1,0 +1,42 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<p>
+  <b><%= Translate.trans("Supplier Type",session[:language])%>:</b>
+  <% ven_tp = VendorType.find_by_id(@vendor.vendor_type_id) %>
+  <%=h ven_tp.name%>
+</p>
+<p>
+  <b><%= Translate.trans("Name",session[:language])%>:</b>
+  <%=h @vendor.name %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Status",session[:language])%>:</b>
+  <%=h @vendor.status %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Address",session[:language])%>:</b>
+  <%=h @vendor.address %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Phone No",session[:language])%>:</b>
+  <%=h @vendor.phone_no %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Person Name",session[:language])%>:</b>
+  <%=h @vendor.person_name %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Email-Id",session[:language])%>:</b>
+  <%=h @vendor.email_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_vendor_path(@vendor) %> |
+<%= link_to 'Back', vendors_path %>
+<%= submit_tag "Print", :class=>"buttons",:onclick=>"window.print();" %>

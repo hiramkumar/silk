@@ -1,0 +1,64 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>Listing Warp Billings</h1>
+<table class="wide-table" id="gradient-style" >
+  <tr>
+  	<th align = 'left'style="font-size: 12px;"><%= Translate.trans("Vendor Name",session[:language])%></th>
+  	<th align = 'left'style="font-size: 12px;"><%= Translate.trans("Date",session[:language])%></th>
+  	<th align = 'left'style="font-size: 12px;"><%= Translate.trans("Warp Type",session[:language])%></th>
+  	<th align = 'left'style="font-size: 12px;"><%= Translate.trans("Requested Date",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Received Warp",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Warp Length",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Received Date",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Description",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Rate (₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Discount (₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Advance Amount (₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Amount To Vendor (₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Return Warp",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Cancel Order",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Remarks",session[:language])%></th>
+	<th align = 'center' colspan = '3'style="font-size: 12px;"><%= Translate.trans("Options",session[:language])%></th>
+  </tr>
+<% for warp_billing in @warp_billings %>
+  <tr>
+  	<% vendor =  Vendor.find_by_id(warp_billing.vendor_id) %>
+  	<td><%= h vendor.name%></td>
+    <td><%=h warp_billing.date.strftime("%d/%m/%y") %></td>
+    <td><%=h warp_billing.type %></td>
+    <td><%=h warp_billing.requested_date.strftime("%d/%m/%y") %></td>
+    <td><%=h warp_billing.warp_weight %></td>
+    <td><%=h warp_billing.warp_length %></td>
+    <td><%=h warp_billing.received_date.strftime("%d/%m/%y") %></td>
+    <td><%=h warp_billing.description %></td>
+    <td><%=h warp_billing.rate %></td>
+    <td><%=h warp_billing.discount %></td>
+     <td><%=h warp_billing.advance %></td>
+     <td><%=h warp_billing.amt_to_warp %></td>
+     <td><%=h warp_billing.return_warp %></td>
+    <td><%=h warp_billing.cancel_order %></td>
+    <td><%=h warp_billing.remarks %></td>
+    <td><%= link_to image_tag( 'show.png'), warp_billing %></td>
+    <td><%= link_to image_tag( 'edit.png'), edit_warp_billing_path(warp_billing) %></td>
+    <td><%= link_to image_tag( 'delete.png'), warp_billing, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to image_tag( 'new.png'), new_warp_billing_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>Silk</title>
+        <%= stylesheet_link_tag "depot" , :media => "all" %>
+        <%= javascript_include_tag :defaults %>
+        <%= csrf_meta_tag %>
+    </head>
+    <div class = "back-ground">
+    <div class = "block-center">
+    <body id="store">
+        <div id="banner">
+            <%#= image_tag("peacock-plume.jpg" ) %>
+            <%= @page_title || "Fiber Woven" %>
+            <div id="addr">
+            	<p></p>
+            	<p></p>
+            	<%#= ( "Pure Silk Manufacturers<br/>8/64[1]North Kambam St.,<br/>Sirumugai-641 302.").html_safe %>
+            </div>
+        </div>
+        <div id="columns">
+            <div id="side" class='noprint'>
+            	<div id="cssmenu">
+			<% if session[:user_id] %>
+				<ul class="active">
+					<li><a href="/users">Users</a></li>
+					<li><a href="/titles">Titles</a></li>
+					<li><a href="/items">Designs</a></li>
+					<li><a href="/workers">Workers</a></li>
+					<li><a href="/vendors">Vendors</a></li>
+					<li><a href="/vendor_types">Vendor Types</a></li>
+					<li><a href="/worker_types">Worker Types</a></li>
+					<li><a href="/dyes">Dyers Billing</a></li>
+					<li><a href="/looms">Weavers Billing</a></li>
+					<li><a href="/silk_billings">Silk Billing</a></li>
+					<li><a href="/jari_billings">Jari Billing</a></li>
+					<li><a href="/jute_billings">Jute Billing</a></li>
+					<li><a href="/warp_billings">Warp Billing</a></li>
+					<li><a href="/cotton_billings">Cotton Billing</a></li>
+					<li><a href="/designers">Designer Billing</a></li>
+					<li><a href="/search/search_dyer">Search Dyers</a></li>
+					<li><a href="/search/search_vendor">Search Vendors</a></li>
+					<li><a href="/search/search_weaver">Search Weavers</a></li>
+					<li><a href="/admin/logout">Logout</a></li>
+					<li><a href="/login_details/index">Users History</a></li>
+				</ul>
+			<%end%>
+			<ul class="active">
+				<%user = User.find_by_id(session[:user_id])%>
+                <li>User:<%= user.name  %></li>
+            </ul>
+		</div>
+                <div id="body">
+                
+                </div>
+            </div>
+            <div id="main">
+                <%= yield :layout %>
+            </div>
+        </div>
+    </body>
+    </div>
+    </div>
+</html>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  status: MyString
+  vendor_type_id: 1
+  address: MyString
+  phone_no: MyString
+  person_name: MyString
+  email_id: MyString
+
+two:
+  name: MyString
+  status: MyString
+  vendor_type_id: 1
+  address: MyString
+  phone_no: MyString
+  person_name: MyString
+  email_id: MyString

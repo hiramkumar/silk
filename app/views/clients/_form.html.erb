@@ -1,0 +1,44 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<%= form_for(@client) do |f| %>
+  <% if @client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+      <% @client.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= Translate.trans("Name",session[:language])%><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= Translate.trans("Contact Person Name",session[:language])%><br />
+    <%= f.text_field :contact_name %>
+  </div>
+  <div class="field">
+    <%= Translate.trans("Address",session[:language])%><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= Translate.trans("Phone No",session[:language])%><br />
+    <%= f.text_field :ph_no %>
+  </div>
+  <div class="field">
+    <%= Translate.trans("Email",session[:language])%><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= Translate.trans("Status",session[:language])%><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

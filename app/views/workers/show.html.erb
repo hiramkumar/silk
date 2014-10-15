@@ -1,0 +1,99 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<table class="wide-table"  id="ver-zebra">
+	<th></th>
+	<th>
+		 <colgroup>
+    		<col class="vzebra-odd" />
+    		<col class="vzebra-even" />
+    	 </colgroup>
+    </th>
+    <tr>
+		<td>
+			<b><%= Translate.trans("Worker Type",session[:language])%>:</b>
+		</td>
+		<td>
+			<%=h @worker_type.name %>
+		</td>
+	</tr>
+<tr>
+	<td>
+		<b><%= Translate.trans("Title",session[:language])%>:</b>
+	</td>
+	<td>
+		<%=h @title.name %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<b><%= Translate.trans("First Name",session[:language])%>:</b>
+	</td>
+	<td>
+		<%=h @worker.first_name %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<b><%= Translate.trans("Last Name",session[:language])%>:</b>
+	</td>
+	<td>
+		<%=h @worker.last_name %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<b><%= Translate.trans("Age",session[:language])%>:</b>
+	</td>
+	<td>
+		<%=h @worker.age %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<b><%= Translate.trans("Address1",session[:language])%>:</b>
+	</td>
+	<td>
+		<%=h @worker.address1 %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<b><%= Translate.trans("Address2",session[:language])%>:</b>
+	</td>
+	<td>
+		<%=h @worker.address2 %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<b><%= Translate.trans("Referred By",session[:language])%>:</b>
+	</td>
+	<td>
+		<%=h @worker.referred_by %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<b><%= Translate.trans("Phone No",session[:language])%>:</b>
+	</td>
+	<td>
+		<%=h @worker.phone_no %>
+	</td>
+</tr>
+<tr>
+	
+	<td></td>
+	<td>
+		<%= link_to image_tag( 'edit.png'), edit_worker_path(@worker) %>
+		<%= link_to image_tag( 'back.png'), workers_path %>
+		<%= image_submit_tag("print.png", :class=>"buttons", :onclick=>"window.print();") %>
+	</td>
+</tr>
+<tr class = "bot_bor">
+</tr>
+</table>
+
+
+
+

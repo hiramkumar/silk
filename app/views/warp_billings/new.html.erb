@@ -1,0 +1,75 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<table width = '100%'>
+<h1>New warp_billing</h1>
+
+<% form_for(@warp_billing) do |f| %>
+  <%= f.error_messages %>
+  
+  <p>
+    <%= Translate.trans("Vendor Name",session[:language])%><br />
+    <%= f.collection_select(:vendor_id,@vendors,:id,:name,:prompt =>0) %>
+  </p>
+  <p>
+    <%= Translate.trans("Warp Type",session[:language])%>
+    <%= f.text_field :type %>
+  </p>
+  <p>
+    <%= Translate.trans("Date",session[:language])%><br /><br />
+    <%= f.date_select :date, :order => [:day, :month, :year]  %>
+  </p>
+  <p>
+    <%= Translate.trans("Requested Date",session[:language])%><br /><br />
+    <%= f.date_select :requested_date, :order => [:day, :month, :year] %>
+  </p>
+  <p>
+    <%= Translate.trans("Received Date",session[:language])%><br /><br />
+    <%= f.date_select :received_date, :order => [:day, :month, :year] %>
+  </p>
+    <p>
+    <%= Translate.trans("Received Warp",session[:language])%><br /><br />
+    <%= f.text_field :warp_weight %>
+  </p>
+  <p>
+    <%= Translate.trans("Warp Length",session[:language])%><br /><br />
+    <%= f.text_field :warp_length %>
+  </p>
+  <p>
+    <%= Translate.trans("Rate(₹)",session[:language])%><br /><br />
+    <%= f.text_field :rate %>
+  </p>
+  <p>
+    <%= Translate.trans("Discount(₹)",session[:language])%><br /><br />
+    <%= f.text_field :discount %>
+  </p>
+  <p>
+    <%= Translate.trans("Amount To Vendor(₹)",session[:language])%><br /><br />
+    <%= f.text_field :amt_to_warp %>
+  </p>
+  <p>
+    <%= Translate.trans("Cancel Order",session[:language])%><br /><br />
+    <%= f.text_field :cancel_order %>
+  </p>
+  <p>
+    <%= Translate.trans("Return Warp",session[:language])%><br /><br />
+    <%= f.text_field :return_warp %>
+  </p>
+  <p>
+    <%= Translate.trans("Advance Amount(₹)",session[:language])%><br /><br />
+    <%= f.text_field :advance %>
+  </p>
+  <p>
+    <%= Translate.trans("Description",session[:language])%><br /><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= Translate.trans("Remarks",session[:language])%><br /><br />
+    <%= f.text_field :remarks %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+</table>
+<%= link_to 'Back', warp_billings_path %>

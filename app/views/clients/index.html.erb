@@ -1,0 +1,46 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1 style=" font-style: italic; font-family: Times New Roman;">Listing Silk Billings</h1>
+<table width = '100%' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+  <tr>
+  	<th align = 'left'><%= Translate.trans("Name",session[:language])%></th>
+  	<th align = 'left'><%= Translate.trans("Contact Name",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Address",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Ph no",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Email",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Status",session[:language])%></th>
+	<th align = 'center' colspan = '3'><%= Translate.trans("Options",session[:language])%></th>
+  </tr>
+<% @clients.each do |client| %>
+  <tr>
+  	<td><%= h client.name%></td>
+    <td><%=h client.contact_name %></td>
+    <td><%=h client.address %></td>
+    <td><%=h client.ph_no %></td>
+    <td><%=h client.email %></td>
+    <td><%=h client.status %></td>
+    <td><%= link_to 'Show', client %></td>
+    <td><%= link_to 'Edit', edit_client_path(client) %></td>
+    <td><%= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Client', new_client_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>Silk</title>
+        <%= stylesheet_link_tag "depot" , :media => "all" %>
+        <%= javascript_include_tag :defaults %>
+        <%= csrf_meta_tag %>
+    </head>
+    <body id="store">
+        <div id="banner">
+            <%#= image_tag("peacock-plume.jpg" ) %>
+            <%= @page_title || "Fiber Woven" %>
+            <div id="addr">
+            	<%= (@page_title || "Pure Silk Manufacturers<br/>8/64[1]North Kambam St.,<br/>Sirumugai-641 302.").html_safe %>
+            </div>
+        </div>
+        <div id="columns">
+            <div id="side" class='noprint'>
+            	<div id="cssmenu">
+				<ul class="active">
+					<li><a href="www.fiberwoven.in">Home</a></li>
+					<li><a href="www.fiberwoven.in">About</a></li>
+					<li><a href="www.fiberwoven.in">Contacts</a></li>
+				</ul>
+		</div>
+                <div id="body">
+                
+                </div>
+            </div>
+            <div id="main">
+                <%= yield :layout %>
+            </div>
+            <div id="foot">
+                Copyright©2013 www.fiberwoven.in
+            </div>
+        </div>
+    </body>
+</html>

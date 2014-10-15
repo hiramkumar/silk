@@ -1,0 +1,142 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<div style=" font-style: italic; font-family: Times New Roman; font-size: 20px;font-weight: bold;" align = 'center'><%= Translate.trans("Receipt",session[:language])%></div>
+<div style=" font-style: italic; font-family: Times New Roman; font-size: 15px;font-weight: bold;" align = 'center'><%= Translate.trans("As On Date",session[:language])%>:<%= Time.now.strftime("%d/%m/%y")%></div>
+<table width = '100%' align = 'center' style=" font-style: italic; font-family: Times New Roman;" >
+	<% vendor = Vendor.find_by_id(@warp_billing.vendor_id)%>
+	<%ven_tpe = VendorType.find_by_id(vendor.vendor_type_id)%>
+	<tr><td colspan = '6'><hr></td></tr>
+  <tr>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Vendor Id",session[:language])%></b></td><td align = 'left' width = '20%'>:<%= vendor.id%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Company Name",session[:language])%>	</b></td><td align = 'left' width = '20%'>:<%= vendor.name%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Address",session[:language])%></b></td><td align = 'left' width = '30%'>:<%= vendor.address%></td>
+ </tr>
+ <tr>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Person Name",session[:language])%></b><td align = 'left' width = '20%'>:<%= vendor.person_name%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Phone No",session[:language])%></b><td align = 'left' width = '20%'>:<%= vendor.phone_no%></td>
+    <td align = 'left' width = '10%'><b><%= Translate.trans("Supplier Type",session[:language])%></b><td align = 'left' width = '30%'>:<%= ven_tpe.name%></td>
+  </tr>
+<tr><td colspan = '6'><hr></td></tr>
+</table>
+<table width = '100%' align = 'center' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+	<th align = 'left'><%= Translate.trans("Slno",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Bill No",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Entry Date",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Requested Date",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Received Warp",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Warp Length",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Received Date",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Description",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Warp Type",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Rate(₹)",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Discount(₹)",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Amount To Vendor(₹)",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Advance Amount(₹)",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Cancel Order",session[:language])%></th>
+    <th align = 'right'><%= Translate.trans("Return Warp",session[:language])%></th>
+    <th align = 'left'><%= Translate.trans("Remarks",session[:language])%></th>
+  </tr>
+  	<%re_qty = 0%><%rte = 0%><%amt = 0%><%adv = 0%><%dis = 0%><%sl = 0%><%retn = 0%><%length = 0%>
+<tr>
+	<td><%=sl += 1 %></td>
+	<td><%=h @warp_billing.id %></td>
+    <td><%=h @warp_billing.date.strftime("%d/%m/%y")%></td>
+    <td><%=h @warp_billing.requested_date.strftime("%d/%m/%y")%></td>
+    <td align = 'right'><%=h number_with_precision(@warp_billing.warp_weight.to_f.round.abs,:presicion =>2)%></td>
+    <%re_qty += @warp_billing.warp_weight.to_f%>
+    <td align = 'right'><%=h @warp_billing.warp_length.to_i%></td>
+    <%length += @warp_billing.warp_length.to_i%>
+    <td><%=h @warp_billing.received_date.strftime("%d/%m/%y")%></td>
+    <td align = 'right'><%=h  @warp_billing.description%></td>
+    <td align = 'right'><%=h  @warp_billing.type%></td>
+    <td align = 'right'><%=h  number_with_precision(@warp_billing.rate.to_f.round.abs,:presicion =>2)%></td>
+    <%rte += @warp_billing.rate.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@warp_billing.discount.to_f.round.abs,:presicion =>2)%></td>
+    <%dis +=  @warp_billing.discount.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@warp_billing.amt_to_warp.to_f.round.abs,:presicion =>2)%></td>
+    <%amt += @warp_billing.amt_to_warp.to_f %>
+    <td align = 'right'><%=h  number_with_precision(@warp_billing.advance.to_f.round.abs,:presicion =>2)%></td>
+    <%adv += @warp_billing.advance.to_f %>
+    <td align = 'right'><%=h  @warp_billing.cancel_order%></td>
+    <td align = 'right'><%=h  @warp_billing.return_warp%></td>
+    <%retn +=  @warp_billing.return_warp.to_f %>
+    <td align = 'right'><%=h  @warp_billing.remarks%></td>
+</tr>
+<tr>
+	<td><b><%= Translate.trans("Total",session[:language])%></b></td>
+	<td></td>
+	<td></td>
+	<td align = 'right'></td>
+	<td align = 'right'><b><%=h number_with_precision(re_qty.to_f.round.abs,:presicion =>2)%></b></td>
+	<td align = 'right'><b><%=h length.to_i%></b></td>
+	<td align = 'right'></td><td align = 'right'></td><td align = 'right'></td>
+	<td align = 'right'><b><%=h number_with_precision(rte.to_f.round.abs,:presicion =>2)%></b></td>
+	<td align = 'right'><b><%=h number_with_precision(dis.to_f.round.abs,:presicion =>2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(amt.to_f.round.abs,:presicion =>2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(adv.to_f.round.abs,:presicion =>2) %></b></td>
+	<td align = 'right'><b><%=h number_with_precision(retn.to_f.round.abs,:presicion =>2) %></b></td>
+	<td align = 'right'></td>
+	<td align = 'right'></td>
+</tr>
+	<%message = Hash.new%>
+    <% message["Bill No:"] = @warp_billing.id%>
+    <% if @warp_billing.warp_weight != nil%>
+    	<%message["WarpWeight"] =  number_with_precision(@warp_billing.warp_weight.to_f.round.abs,:presicion =>2)%>
+    <%end%>
+    <% if @warp_billing.received_date != nil%>
+    	<%message["ReqDate"] =  @warp_billing.received_date.strftime("%d/%m/%Y")%>
+    <%end%>
+    <% if @warp_billing.advance != nil%>
+    	<% message["Adv Amt"] = number_with_precision(@warp_billing.advance.to_f.round.abs,:presicion =>2)%>
+    <%end%>
+    <% if @warp_billing.type != nil%>
+    	<% message["Type"] = @warp_billing.type%>
+    <%end%>
+    <% if @warp_billing.description != ""%>
+    	<% message["Description"] = @warp_billing.description%>
+    <%end%>
+    <% if @warp_billing.rate != nil%>
+    	<% message["Rate"] = number_with_precision(@warp_billing.rate.to_f.round.abs,:presicion =>2)%>
+    <%end%>
+    <% if @warp_billing.discount != nil%>
+    	<% message["Discount"] = number_with_precision(@warp_billing.discount.to_f.round.abs,:presicion =>2)%>
+    <%end%>
+    <% if @warp_billing.amt_to_warp != nil%>
+    	<% message["AmtToVendor"] = number_with_precision(@warp_billing.amt_to_warp.to_f.round.abs,:presicion =>2)%>
+    <%end%>
+    <% if @warp_billing.cancel_order != ""%>
+    	<% message["CancelOrder"] = @warp_billing.cancel_order%>
+    <%end%>
+    <% if @warp_billing.return_warp != ""%>
+    	<% message["AmtToVendor"] = number_with_precision(@warp_billing.return_warp.to_f.round.abs,:presicion =>2)%>
+    <%end%>
+    <% if @warp_billing.remarks != ""%>
+    	<% message["Remarks"] = @warp_billing.remarks%>
+    <%end%>
+    <% if @warp_billing.warp_length != nil%>
+    	<% message["Warp Length"] = @warp_billing.warp_length%>
+    <%end%>
+</table>
+<table>
+<tr>
+	<td class='noprint'>
+		<%= link_to 'Edit', edit_warp_billing_path(@warp_billing) %> |
+	</td>
+	<td class='noprint'>
+		<%= link_to 'Back', warp_billings_path %> |
+	</td>
+	<td class='noprint'>
+	<a href="http://ubaid.tk/sms/sms.aspx?uid=7204712489&pwd=ram2india&msg=<%= message %>&phone=7204712489&provider=way2sms">Send SMS</a></td>
+</tr>
+
+
+
+
+
+
+
+</table>
+
+
+<%= submit_tag "Print", :class=>"buttons",:onclick=>"window.print();" %>

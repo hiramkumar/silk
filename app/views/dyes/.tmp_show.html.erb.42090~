@@ -1,0 +1,47 @@
+<p>
+  <b>Dyer Id:</b>
+  <%=h @dye.worker_id %>
+</p>
+<p>
+  <b>Dyer Name:</b>
+  <% worker = Worker.find_by_id(@dye.worker_id)%>
+  <%=h worker.first_name %><%=h worker.last_name %>
+</p>
+<p>
+  <b>Date:</b>
+  <%=h @dye.date.strftime("%d/%m/%y") %>
+</p>
+
+<p>
+  <b>Salary:</b>
+  <%=h @dye.salary %>
+</p>
+
+<p>
+  <b>Advance amount:</b>
+  <%=h @dye.advance_amount %>
+</p>
+
+<p>
+  <b>Raw warp to dyer:</b>
+  <%=h @dye.raw_warp_to_dyer %>
+</p>
+
+<p>
+  <b>Raw silk to dyer:</b>
+  <%=h @dye.raw_silk_to_dyer %>
+</p>
+
+<p>
+  <b>Coloured warp from dyer:</b>
+  <%=h @dye.coloured_warp_from_dyer %>
+</p>
+
+<p>
+  <b>Coloured silk from dyer:</b>
+  <%=h @dye.coloured_silk_from_dyer %>
+</p>
+
+
+<%= link_to 'Edit', edit_dye_path(@dye) %> |
+<%= link_to 'Back', dyes_path %>

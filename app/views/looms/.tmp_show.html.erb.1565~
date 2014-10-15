@@ -1,0 +1,64 @@
+
+<p>
+  <b>Weaver Id:</b>
+  <%= @loom.worker_id %>
+</p>
+<p>
+  <b>Weaver Name:</b>
+  <% worker = Worker.find_by_id(@loom.worker_id)%>
+  <%=h worker.first_name %><%=h worker.last_name %>
+</p>
+
+<p>
+  <b>Entry date:</b>
+  <%=h @loom.entry_date.strftime("%d/%m/%y ") %>
+</p>
+
+<p>
+  <b>Salary amount:</b>
+  <%=h @loom.salary_amount %>
+</p>
+
+<p>
+  <b>Advance amount:</b>
+  <%=h @loom.advance_amount %>
+</p>
+
+<p>
+  <b>Warp to weaver:</b>
+  <%=h @loom.warp_to_weaver %>
+</p>
+
+<p>
+  <b>Silk to weaver:</b>
+  <%=h @loom.silk_to_weaver %>
+</p>
+
+<p>
+  <b>Jari to weaver:</b>
+  <%=h @loom.jari_to_weaver %>
+</p>
+
+<p>
+  <b>Jute to weaver:</b>
+  <%=h @loom.jute_to_weaver %>
+</p>
+
+<p>
+  <b>Weaving cotton:</b>
+  <%=h @loom.weaving_cotton %>
+</p>
+
+<p>
+  <b>Warp cotton:</b>
+  <%=h @loom.warp_cotton %>
+</p>
+
+<p>
+  <b>Sarees from weaver:</b>
+  <%=h @loom.sarees_from_weaver %>
+</p>
+
+
+<%= link_to 'Edit', edit_loom_path(@loom) %> |
+<%= link_to 'Back', looms_path %>

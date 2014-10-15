@@ -1,0 +1,29 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<table width = '50%' style=" font-style: italic; font-family: Times New Roman;" border="1" 	class="curvedEdges">
+<h1>Editing title</h1>
+
+<% form_for(@title) do |f| %>
+  <%= f.error_messages %>
+<tr>
+	<td>
+    <%= Translate.trans("Name",session[:language])%>
+    <%= f.text_field :name %>		
+	</td>
+</tr>
+<tr>
+	<td>
+    <%= Translate.trans("Status",session[:language])%>
+    <%= f.select :status, [['Active', 'Active'], ['InActive', 'InActive']]%>		
+	</td>
+</tr>
+<tr>
+	<td align = 'center'>
+    <%= image_submit_tag("update.jpg") %>	
+	</td>
+</tr>
+<% end %>
+</table>
+<%= link_to image_tag( 'show.jpg'), @title %> 
+<%= link_to image_tag( 'white_back.jpg'), titles_path %>

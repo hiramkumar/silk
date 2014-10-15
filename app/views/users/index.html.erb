@@ -1,0 +1,26 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>Listing Users</h1>
+
+<table class="wide-table" id="gradient-style" >
+  <tr>
+    <th><%= Translate.trans("Name",session[:language])%></th>
+    <th colspan="2"><%= Translate.trans("Options",session[:language])%></th>
+  </tr>
+
+<% for user in @users %>
+  <tr>
+    <td><%=h user.name %></td>
+    <td align = 'center'>
+    	<%= link_to image_tag( 'show.png'), user%>
+    </td>
+    <td align = 'center'>
+    	<%= link_to image_tag( 'delete.png'), user, :confirm => 'Are you sure?', :method => :delete%>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to image_tag( 'new.png'), new_user_path%>

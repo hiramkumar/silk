@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type: MyString
+  date: 2012-09-13 12:09:35
+  requested_date: 2012-09-13 12:09:35
+  received_date: 2012-09-13 12:09:35
+  vendor_id: 1
+  rate: 1
+  discount: 1
+  amt_to_warp: 1
+  cancel_order: MyString
+  return_warp: 1
+  advance: 1
+  warp_weight: 1
+  description: MyString
+  remarks: MyString
+
+two:
+  type: MyString
+  date: 2012-09-13 12:09:35
+  requested_date: 2012-09-13 12:09:35
+  received_date: 2012-09-13 12:09:35
+  vendor_id: 1
+  rate: 1
+  discount: 1
+  amt_to_warp: 1
+  cancel_order: MyString
+  return_warp: 1
+  advance: 1
+  warp_weight: 1
+  description: MyString
+  remarks: MyString

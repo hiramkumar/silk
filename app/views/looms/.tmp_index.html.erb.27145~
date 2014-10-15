@@ -1,0 +1,42 @@
+<h1>Listing Weavers</h1>
+
+<table width = '100%' border = '1'>
+  <tr>
+    <th align = 'left'>Worker</th>
+    <th align = 'left'>Entry date</th>
+    <th align = 'left'>Salary amount</th>
+    <th align = 'left'>Advance amount</th>
+    <th align = 'left'>Warp to weaver</th>
+    <th align = 'left'>Silk to weaver</th>
+    <th align = 'left'>Jari to weaver</th>
+    <th align = 'left'>Jute to weaver</th>
+    <th align = 'left'>Weaving cotton</th>
+    <th align = 'left'>Warp cotton</th>
+    <th align = 'left'>Sarees from weaver</th>
+	<th align = 'center' colspan = '3'>Options</th>
+  </tr>
+
+<% for loom in @looms %>
+  <tr>
+  	<% worker = Worker.find_by_id(loom.worker_id)%>
+	<td><%=h worker.first_name %><%=h worker.last_name %></td>
+    <td><%=h loom.entry_date.strftime("%d/%m/%y")%></td>
+    <td><%=h loom.salary_amount %></td>
+    <td><%=h loom.advance_amount %></td>
+    <td><%=h loom.warp_to_weaver %></td>
+    <td><%=h loom.silk_to_weaver %></td>
+    <td><%=h loom.jari_to_weaver %></td>
+    <td><%=h loom.jute_to_weaver %></td>
+    <td><%=h loom.weaving_cotton %></td>
+    <td><%=h loom.warp_cotton %></td>
+    <td><%=h loom.sarees_from_weaver %></td>
+    <td><%= link_to 'Show', loom %></td>
+    <td><%= link_to 'Edit', edit_loom_path(loom) %></td>
+    <td><%= link_to 'Destroy', loom, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New loom', new_loom_path %>

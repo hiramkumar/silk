@@ -1,0 +1,330 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<div style=" font-style: italic; font-family: Times New Roman; font-size: 20px;font-weight: bold;" align = 'center'><%= Translate.trans("Total Transactions Of Vendor",session[:language])%></div>
+<div style=" font-style: italic; font-family: Times New Roman; font-size: 15px;font-weight: bold;" align = 'center'><%= Translate.trans("As On Date",session[:language])%>:<%= Time.now.strftime("%d/%m/%y")%></div>
+	<table width = '100%' align = 'center' style=" font-style: italic; font-family: Times New Roman;">
+		<%worker = Vendor.find_by_id(@worker)%>
+		<%type = VendorType.find_by_id(worker.vendor_type_id)%>
+		<tr><td colspan = '6'><hr></td></tr>
+	  <tr>
+	    <td align = 'left' width = '10%'><b><%= Translate.trans("Supplier Type",session[:language])%></b></td><td align = 'left' width = '20%'>:<%= type.name%></td>
+	    <td align = 'left' width = '10%'><b><%= Translate.trans("Vendor Name",session[:language])%></b></td><td align = 'left' width = '20%'>:<%= worker.name%></td>
+	    <td align = 'left' width = '10%'><b><%= Translate.trans("Person Name",session[:language])%></b></td><td align = 'left' width = '30%'>:<%= worker.person_name%></td>
+	 </tr>
+	 <tr>
+	    <td align = 'left' width = '10%'><b><%= Translate.trans("Address",session[:language])%></b><td align = 'left' width = '20%'>:<%= worker.address%></td>
+	    <td align = 'left' width = '10%'><b><%= Translate.trans("Phone No",session[:language])%>.</b><td align = 'left' width = '20%'>:<%= worker.phone_no%></td>
+	    <td align = 'left' width = '10%'><b><%= Translate.trans("Email-Id",session[:language])%></b><td align = 'left' width = '30%'>:<%= worker.email_id%></td>
+	  </tr>
+	<tr><td colspan = '6'><hr></td></tr>
+	</table>
+
+<%if worker.vendor_type_id == 1%>
+	<table width = '100%' align = 'center' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+		<th align = 'left'><%= Translate.trans("Slno",session[:language])%>.</th>
+	    <th align = 'left'><%= Translate.trans("Bill No",session[:language])%>.</th>
+	    <th align = 'left'><%= Translate.trans("Date",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Received Silk(gm)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Silk Type",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Rate(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Discount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Advance Amount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Amount To Vendor(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Return Qty",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Remarks",session[:language])%></th>
+	  </tr>
+	  	<%rcd = 0%><%adv = 0%><%rte = 0%><%dis = 0%><%amt = 0%><%sl=0%><%rtn = 0%>
+		<%for dye in @vendor%>
+			<tr>
+				<td><%=sl += 1 %></td>
+				<td><%=h dye.id %></td>
+			    <td><%=h dye.date.strftime("%d/%m/%y")%></td>
+			    <td align = 'right'><%=h number_with_precision(dye.received_silk.to_f.round.abs,:precision => 2)%></td>
+			    <%rcd += dye.received_silk.to_f%>
+			    <td align = 'right'><%=h  dye.description%></td>
+			    <td align = 'right'><%=h  number_with_precision(dye.rate.to_f.round.abs,:precision => 2)%></td>
+			    <%rte += dye.rate.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.discount.to_f.round.abs,:precision => 2)%></td>
+			    <%dis += dye.discount.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.adv_amt.to_f.round.abs,:precision => 2)%></td>
+			    <%adv += dye.adv_amt.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.amt_to_vendor.to_f.round.abs,:precision => 2)%></td>
+			    <%amt += dye.amt_to_vendor.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.return_qty.to_f.round.abs,:precision => 2)%></td>
+			    <%rtn += dye.return_qty.to_f %>
+			    <td align = 'right'><%=h  dye.remarks%></td>
+			</tr>
+	<%end%>
+	<tr>
+		<td><b><%="Total:" %></b></td>
+		<td></td>
+		<td></td>
+		<td align = 'right'><b><%=h number_with_precision(rcd.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'></td>
+		<td align = 'right'><b><%=h number_with_precision(rte.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(dis.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(adv.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(amt.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(rtn.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'></td>
+	</tr>
+	</table>
+<%elsif worker.vendor_type_id == 2 %>
+	<table width = '100%' align = 'center' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+		<th align = 'left'><%= Translate.trans("Slno",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Bill No",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Entry date",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Received Quantity",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Jari Type",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Rate(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Discount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Advance Amount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Amount To Vendor(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Description",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Batch No",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Remarks",session[:language])%></th>
+	  </tr>
+	  	<%rcd = 0%><%adv = 0%><%rte = 0%><%dis = 0%><%amt = 0%><%sl=0%><%rtn = 0%>
+		<%for dye in @vendor%>
+			<tr>
+				<td><%=sl += 1 %></td>
+				<td><%=h dye.id %></td>
+			    <td><%=h dye.date.strftime("%d/%m/%y")%></td>
+			    <td align = 'right'><%=h number_with_precision(dye.received_qty.to_f.round.abs,:precision => 2)%></td>
+			    <%rcd += dye.received_qty.to_f%>
+			    <td align = 'right'><%=h  dye.jari_type%></td>
+			    <td align = 'right'><%=h  number_with_precision(dye.rate.to_f.round.abs,:precision => 2)%></td>
+			    <%rte += dye.rate.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.discount.to_f.round.abs,:precision => 2)%></td>
+			    <%dis += dye.discount.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.advance_amount.to_f.round.abs,:precision => 2)%></td>
+			    <%adv += dye.advance_amount.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.amount_to_vendor.to_f.round.abs,:precision => 2)%></td>
+			    <%amt += dye.amount_to_vendor.to_f %>
+			    <td align = 'right'><%=h  dye.description%></td>
+			    <td align = 'right'><%=h  dye.batch_no%></td>
+			    <td align = 'right'><%=h  dye.remarks%></td>
+			</tr>
+	<%end%>
+	<tr>
+		<td><b><%="Total:" %></b></td>
+		<td></td>
+		<td></td>
+		<td align = 'right'><b><%=h number_with_precision(rcd.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'></td>
+		<td align = 'right'><b><%=h number_with_precision(rte.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(dis.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(adv.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(amt.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'></td>
+		<td align = 'right'></td>
+		<td align = 'right'></td>
+	</tr>
+	</table>
+<%elsif worker.vendor_type_id == 3 %>
+		<table width = '100%' align = 'center' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+		<th align = 'left'><%= Translate.trans("Slno",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Bill No",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Date",session[:language])%> </th>
+	    <th align = 'right'><%= Translate.trans("Received Qty",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Cotton Type",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Rate(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Discount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Advance Amount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Amount To Vendor(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Return Qty",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Remarks",session[:language])%></th>
+	  </tr>
+	  	<%rcd = 0%><%adv = 0%><%rte = 0%><%dis = 0%><%amt = 0%><%sl=0%><%rtn = 0%>
+		<%for dye in @vendor%>
+			<tr>
+				<td><%=sl += 1 %></td>
+				<td><%=h dye.id %></td>
+			    <td><%=h dye.date.strftime("%d/%m/%y")%></td>
+			    <td align = 'right'><%=h number_with_precision(dye.received_qty.to_f.round.abs,:precision => 2)%></td>
+			    <%rcd += dye.received_qty.to_f%>
+			    <td align = 'right'><%=h  dye.description%></td>
+			    <td align = 'right'><%=h  number_with_precision(dye.rate.to_f.round.abs,:precision => 2)%></td>
+			    <%rte += dye.rate.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.discount.to_f.round.abs,:precision => 2)%></td>
+			    <%dis += dye.discount.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.adv_amt.to_f.round.abs,:precision => 2)%></td>
+			    <%adv += dye.adv_amt.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.amt_to_vendor.to_f.round.abs,:precision => 2)%></td>
+			    <%amt += dye.amt_to_vendor.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.return_qty.to_f.round.abs,:precision => 2)%></td>
+			    <%rtn += dye.return_qty.to_f %>
+			    <td align = 'right'><%=h  dye.remarks%></td>
+			</tr>
+	<%end%>
+	<tr>
+		<td><b><%="Total:" %></b></td>
+		<td></td>
+		<td></td>
+		<td align = 'right'><b><%=h number_with_precision(rcd.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'></td>
+		<td align = 'right'><b><%=h number_with_precision(rte.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(dis.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(adv.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(amt.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(rtn.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'></td>
+	</tr>
+	</table>
+<%elsif worker.vendor_type_id == 4 %>
+		<table width = '100%' align = 'center' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+		<th align = 'left'><%= Translate.trans("Slno",session[:language])%>.</th>
+	    <th align = 'left'><%= Translate.trans("Bill No",session[:language])%>.</th>
+	    <th align = 'left'><%= Translate.trans("Entry Date",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Received Qty",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Jute Type",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Rate(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Discount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Advance Amount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Amount To Vendor(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Return Qty",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Remarks",session[:language])%></th>
+	  </tr>
+	  	<%rcd = 0%><%adv = 0%><%rte = 0%><%dis = 0%><%amt = 0%><%sl=0%><%rtn = 0%>
+		<%for dye in @vendor%>
+			<tr>
+				<td><%=sl += 1 %></td>
+				<td><%=h dye.id %></td>
+			    <td><%=h dye.date.strftime("%d/%m/%y")%></td>
+			    <td align = 'right'><%=h number_with_precision(dye.received_qty.to_f.round.abs,:precision => 2)%></td>
+			    <%rcd += dye.received_qty.to_f%>
+			    <td align = 'right'><%=h  dye.description%></td>
+			    <td align = 'right'><%=h  number_with_precision(dye.rate.to_f.round.abs,:precision => 2)%></td>
+			    <%rte += dye.rate.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.discount.to_f.round.abs,:precision => 2)%></td>
+			    <%dis += dye.discount.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.adv_amt.to_f.round.abs,:precision => 2)%></td>
+			    <%adv += dye.adv_amt.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.amt_to_vendor.to_f.round.abs,:precision => 2)%></td>
+			    <%amt += dye.amt_to_vendor.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.return_qty.to_f.round.abs,:precision => 2)%></td>
+			    <%rtn += dye.return_qty.to_f %>
+			    <td align = 'right'><%=h  dye.remarks%></td>
+			</tr>
+	<%end%>
+	<tr>
+		<td><b><%="Total:" %></b></td>
+		<td></td>
+		<td></td>
+		<td align = 'right'><b><%=h number_with_precision(rcd.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'></td>
+		<td align = 'right'><b><%=h number_with_precision(rte.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(dis.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(adv.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(amt.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(rtn.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'></td>
+	</tr>
+	</table>
+<%elsif worker.vendor_type_id == 5 %>
+		<table width = '100%' align = 'center' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+		<th align = 'left'><%= Translate.trans("Slno",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Bill No",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Date",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Requested Date",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Received Warp",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Received Date",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Description",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Rate(₹)",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Discount(₹)",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Advance Amount(₹)",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Amount To Vendor(₹)",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Return Warp",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Cancel Order",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Remarks",session[:language])%></th>
+	  </tr>
+	  	<%rcd = 0%><%adv = 0%><%rte = 0%><%dis = 0%><%amt = 0%><%sl=0%><%rtn = 0%>
+		<%for dye in @vendor%>
+			<tr>
+				<td><%=sl += 1 %></td>
+				<td><%=h dye.id %></td>
+			    <td><%=h dye.date.strftime("%d/%m/%y")%></td>
+			    <td><%=h dye.requested_date.strftime("%d/%m/%y")%></td>
+			    <td align = 'right'><%=h number_with_precision(dye.warp_weight.to_f.round.abs,:precision => 2)%></td>
+			    <%rcd += dye.warp_weight.to_f%>
+			    <td><%=h dye.received_date.strftime("%d/%m/%y")%></td>
+			    <td align = 'right'><%=h  dye.description%></td>
+			    <td align = 'right'><%=h  number_with_precision(dye.rate.to_f.round.abs,:precision => 2)%></td>
+			    <%rte += dye.rate.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.discount.to_f.round.abs,:precision => 2)%></td>
+			    <%dis += dye.discount.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.advance.to_f.round.abs,:precision => 2)%></td>
+			    <%adv += dye.advance.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.amt_to_warp.to_f.round.abs,:precision => 2)%></td>
+			    <%amt += dye.amt_to_warp.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.return_warp.to_f.round.abs,:precision => 2)%></td>
+			    <%rtn += dye.return_warp.to_f %>
+			    <td align = 'right'><%=h  dye.cancel_order%></td>
+			    <td align = 'right'><%=h  dye.remarks%></td>
+			</tr>
+	<%end%>
+	<tr>
+		<td><b><%="Total:" %></b></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td align = 'right'><b><%=h number_with_precision(rcd.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'></td>
+		<td></td>
+		<td align = 'right'><b><%=h number_with_precision(rte.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(dis.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(adv.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(amt.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(rtn.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'></td>
+		<td align = 'right'></td>
+	</tr>
+	</table>
+<%elsif worker.vendor_type_id == 6 %>
+		<table width = '100%' align = 'center' border = '1' style=" font-style: italic; font-family: Times New Roman;">
+		<th align = 'left'><%= Translate.trans("Slno",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Bill No",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Entry Date",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Design",session[:language])%></th>
+	    <th align = 'left'><%= Translate.trans("Expected Date",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Description",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Rate(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Discount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Advance Amount(₹)",session[:language])%></th>
+	    <th align = 'right'><%= Translate.trans("Amount To Vendor(₹)",session[:language])%></th>
+	  </tr>
+	  	<%rcd = 0%><%adv = 0%><%rte = 0%><%dis = 0%><%amt = 0%><%sl=0%><%rtn = 0%>
+		<%for dye in @vendor%>
+			<tr>
+				<td><%=sl += 1 %></td>
+				<td><%=h dye.id %></td>
+			    <td><%=h dye.date.strftime("%d/%m/%y")%></td>
+			    <td align = 'right'><%=h  dye.design_id%></td>
+			    <td><%=h dye.due_date.strftime("%d/%m/%y")%></td>
+			    <td align = 'right'><%=h  dye.description%></td>
+			    <td align = 'right'><%=h  number_with_precision(dye.rate.to_f.round.abs,:precision => 2)%></td>
+			    <%rte += dye.rate.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.discount.to_f.round.abs,:precision => 2)%></td>
+			    <%dis += dye.discount.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.advance.to_f.round.abs,:precision => 2)%></td>
+			    <%adv += dye.advance.to_f %>
+			    <td align = 'right'><%=h  number_with_precision(dye.amt_to_vendor.to_f.round.abs,:precision => 2)%></td>
+			    <%amt += dye.amt_to_vendor.to_f %>
+			</tr>
+	<%end%>
+	<tr>
+		<td><b><%="Total:" %></b></td>
+		<td></td>
+		<td></td>
+		<td align = 'right'></td>
+		<td align = 'right'></td>
+		<td align = 'right'></td>
+		<td align = 'right'><b><%=h number_with_precision(rte.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(dis.to_f.round.abs,:precision => 2) %></b></td>
+		<td align = 'right'><b><%=h number_with_precision(adv.to_f.round.abs,:precision => 2)%></b></td>
+		<td align = 'right'><b><%=h number_with_precision(amt.to_f.round.abs,:precision => 2) %></b></td>
+	</tr>
+	</table>
+	<%end%>
+<%= submit_tag "Print", :class=>"buttons",:onclick=>"window.print();" %>

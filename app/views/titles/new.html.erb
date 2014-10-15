@@ -1,0 +1,24 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<table width = '100%' style=" font-style: italic; font-family: Times New Roman;">
+<h1>New title</h1>
+
+<%= form_for(@title) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= Translate.trans("Name",session[:language])%>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= Translate.trans("Status",session[:language])%>
+	<%= f.select :status, [['Active', 'Active'], ['InActive', 'InActive']]%>
+
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+</table>
+<%= link_to 'Back', titles_path %>

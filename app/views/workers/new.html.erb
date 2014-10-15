@@ -1,0 +1,61 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<table width = '100%' style=" font-style: italic; font-family: Times New Roman;">
+<h1>New worker</h1>
+
+<% form_for(@worker) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= Translate.trans("Worker Type",session[:language])%><br />
+    <%= f.collection_select(:worker_type_id,@worker_types,:id,:name) %>
+  </p>
+   <p>
+    <%= Translate.trans("Title",session[:language])%><br />
+    <%= f.collection_select(:title_id,@titles,:id,:name) %>
+  </p>
+  <p>
+    <%= Translate.trans("First Name",session[:language])%><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= Translate.trans("Last Name",session[:language])%><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= Translate.trans("Age",session[:language])%><br />
+    <%= f.text_field :age %>
+  </p>
+  <p>
+    <%= Translate.trans("Address1",session[:language])%><br />
+    <%= f.text_field :address1 %>
+  </p>
+  <p>
+    <%= Translate.trans("Address2",session[:language])%><br />
+    <%= f.text_field :address2 %>
+  </p>
+  <p>
+    <%= Translate.trans("Referred By",session[:language])%><br />
+    <%= f.text_field :referred_by %>
+  </p>
+  <p>
+    <%= Translate.trans("Phone No",session[:language])%><br />
+    <%= f.text_field :phone_no %>
+  </p>
+  <p>
+    <%= f.submit "Create", :onclick => 'return validate()'%>
+  </p>
+<% end %>
+</table>
+<%= link_to 'Back', workers_path %>
+<script>
+	function validate(){
+		if (document.getElementById("worker_first_name").value == ""){
+			a = document.getElementById("worker_first_name").value="My First JavaScript Function";
+			alert(a)
+			return false;
+		}
+	}
+	
+</script>

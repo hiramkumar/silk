@@ -1,0 +1,16 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<p>
+  <b><%= Translate.trans("Name",session[:language])%>:</b>
+  <%=h @vendor_type.name %>
+</p>
+
+<p>
+  <b><%= Translate.trans("Status",session[:language])%>:</b>
+  <%=h @vendor_type.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_vendor_type_path(@vendor_type) %> |
+<%= link_to 'Back', vendor_types_path %>

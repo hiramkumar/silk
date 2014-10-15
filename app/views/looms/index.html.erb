@@ -1,0 +1,56 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>Listing Weavers</h1>
+<table class="wide-table" id="gradient-style" >
+  <tr>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Worker Name",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Entry Date",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Salary Amount (₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Advance Amount (₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Advance Reduction (₹)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Warp To Weaver (gm)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Warp Length",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Silk To Weaver (gm)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Jari To Weaver",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Jute To Weaver",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Weaving Cotton",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Warp Cotton (gm)",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Weight Of Sarees",session[:language])%></th>
+    <th align = 'left'style="font-size: 12px;"><%= Translate.trans("Sarees From Weaver",session[:language])%></th>
+	<th align = 'center' colspan = '3'style="font-size: 12px;"><%= Translate.trans("Options",session[:language])%></th>
+  </tr>
+
+<% for loom in @looms %>
+  <tr>
+  	<% worker = Worker.find_by_id(loom.worker_id)%>
+	<td><%=h worker.first_name %><%=h worker.last_name %></td>
+    <td><%=h loom.entry_date.strftime("%d/%m/%y")%></td>
+    <td><%=h loom.salary_amount %></td>
+    <td><%=h loom.advance_amount %></td>
+    <td><%=h loom.advance_reduction %></td>
+    <td><%=h loom.warp_to_weaver %></td>
+    <td><%=h loom.warp_length %></td>
+    <td><%=h loom.silk_to_weaver %></td>
+    <td><%=h loom.jari_to_weaver %></td>
+    <td><%=h loom.jute_to_weaver %></td>
+    <td><%=h loom.weaving_cotton %></td>
+    <td><%=h loom.warp_cotton %></td>
+    <td><%=h loom.saree_weight %></td>
+    <td><%=h loom.sarees_from_weaver %></td>
+    <td><%= link_to image_tag( 'show.png'), loom %></td>
+    <td><%= link_to image_tag( 'edit.png'), edit_loom_path(loom) %></td>
+    <td><%= link_to image_tag( 'delete.png'), loom, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<table width = '100%' align = 'left' style=" font-style: italic; font-family: Times New Roman; ">
+	<tr>
+		<td>
+			<%= will_paginate @looms   %>
+		</td>
+	</tr>
+</table>
+<br />
+
+<%= link_to image_tag( 'new.png'), new_loom_path %>

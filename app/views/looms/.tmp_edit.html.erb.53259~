@@ -1,0 +1,60 @@
+<h1>Editing loom</h1>
+
+<% form_for(@loom) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= "Worker Id:"%>
+	<%= f.collection_select(:worker_id,@workers,:id,:id) %>
+  </p>
+  <p>
+    <%= "Worker Name" %>
+    <%= f.collection_select(:worker_id,@workers,:id,:first_name) %>
+  </p>
+  <p>
+    <%= f.label :entry_date %>
+    <%= f.date_select :entry_date, :order => [:day, :month, :year] %>
+  </p>
+  <p>
+    <%= f.label :salary_amount %><br />
+    <%= f.text_field :salary_amount %>
+  </p>
+  <p>
+    <%= f.label :advance_amount %><br />
+    <%= f.text_field :advance_amount %>
+  </p>
+  <p>
+    <%= f.label :warp_to_weaver %><br />
+    <%= f.text_field :warp_to_weaver %>
+  </p>
+  <p>
+    <%= f.label :silk_to_weaver %><br />
+    <%= f.text_field :silk_to_weaver %>
+  </p>
+  <p>
+    <%= f.label :jari_to_weaver %><br />
+    <%= f.text_field :jari_to_weaver %>
+  </p>
+  <p>
+    <%= f.label :jute_to_weaver %><br />
+    <%= f.text_field :jute_to_weaver %>
+  </p>
+  <p>
+    <%= f.label :weaving_cotton %><br />
+    <%= f.text_field :weaving_cotton %>
+  </p>
+  <p>
+    <%= f.label :warp_cotton %><br />
+    <%= f.text_field :warp_cotton %>
+  </p>
+  <p>
+    <%= f.label :sarees_from_weaver %><br />
+    <%= f.text_field :sarees_from_weaver %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @loom %> |
+<%= link_to 'Back', looms_path %>

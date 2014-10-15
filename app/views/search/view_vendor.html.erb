@@ -1,0 +1,32 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1 style=" font-style: italic; font-family: Times New Roman;">Listing Vendors</h1>
+
+<table width = '100%' align = 'center' style=" font-style: italic; font-family: Times New Roman;">
+		  <tr>
+		  	<th align = 'left'><%= Translate.trans("Vendor Id",session[:language])%></th>
+		  	<th align = 'left'><%= Translate.trans("Supplier Type",session[:language])%></th>
+		    <th align = 'left'><%= Translate.trans("Vendor Name",session[:language])%></th>
+		    <th align = 'left'><%= Translate.trans("Person Name",session[:language])%></th>
+		    <th align = 'left'><%= Translate.trans("Address",session[:language])%></th>
+		    <th align = 'left'><%= Translate.trans("Email Id",session[:language])%></th>
+		    <th align = 'left'><%= Translate.trans("Phone No",session[:language])%></th>
+		  </tr>
+		
+		 <% for worker in @workers %>
+		  <tr>
+		  	<td><%= link_to worker.id, :action => 'show_vendor', :worker_id => worker.id %></td>
+		  		<%type = VendorType.find_by_id(worker.vendor_type_id)%>
+		    <td><%=h type.name %></td>
+		    <td><%=h worker.name %></td>
+		    <td><%=h worker.person_name %></td>
+		    <td><%=h worker.address %></td>
+		    <td><%=h worker.email_id %></td>
+		    <td><%=h worker.phone_no %></td>
+		  </tr>
+		<% end %>
+	
+</table>
+
+<br />

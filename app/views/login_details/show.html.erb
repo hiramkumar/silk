@@ -1,0 +1,23 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @login_detail.user %>
+</p>
+
+<p>
+  <b>Login:</b>
+  <%= @login_detail.login %>
+</p>
+
+<p>
+  <b>Logout:</b>
+  <%= @login_detail.logout %>
+</p>
+
+
+<%= link_to 'Edit', edit_login_detail_path(@login_detail) %> |
+<%= link_to 'Back', login_details_path %>

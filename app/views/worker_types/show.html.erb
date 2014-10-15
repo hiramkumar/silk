@@ -1,0 +1,19 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<table width = '50%' border = '1' 	class="curvedEdges">
+<tr>
+	<td>
+		  <b><%= Translate.trans("Name",session[:language])%>:</b>
+  			 <%=h @worker_type.name %>
+	</td>
+</tr>
+<tr>
+	<td>
+  <b><%= Translate.trans("Status",session[:language])%>:</b>
+  <%=h @worker_type.status %>		
+	</td>
+</tr>
+</table>
+<%= link_to image_tag( 'edit.jpg'), edit_worker_type_path(@worker_type) %>
+<%= link_to image_tag( 'white_back.jpg'), worker_types_path %>

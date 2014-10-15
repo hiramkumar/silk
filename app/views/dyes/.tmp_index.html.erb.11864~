@@ -1,0 +1,36 @@
+<h1>Listing dyes</h1>
+
+<table width = '100%' border = '1'>
+  <tr>
+    <th align = 'left'>Dyer</th>
+    <th align = 'left'>Date</th>
+    <th align = 'left'>Salary</th>
+    <th align = 'left'>Advance amount</th>
+    <th align = 'left'>Raw warp to dyer</th>
+    <th align = 'left'>Raw silk to dyer</th>
+    <th align = 'left'>Coloured warp from dyer</th>
+    <th align = 'left'>Coloured silk from dyer</th>
+	<th align = 'center' colspan = '3'>Options</th>
+  </tr>
+
+<% for dye in @dyes %>
+  <tr>
+  	<% worker = Worker.find_by_id(dye.worker_id)%>
+    <td><%=h worker.first_name %><%=h worker.last_name %></td>
+    <td ><%=h dye.date.strftime("%d/%m/%y") %></td>
+    <td><%=h dye.salary %></td>
+    <td><%=h dye.advance_amount %></td>
+    <td><%=h dye.raw_warp_to_dyer %></td>
+    <td><%=h dye.raw_silk_to_dyer %></td>
+    <td><%=h dye.coloured_warp_from_dyer %></td>
+    <td><%=h dye.coloured_silk_from_dyer %></td>
+    <td><%= link_to 'Show', dye %></td>
+    <td><%= link_to 'Edit', edit_dye_path(dye) %></td>
+    <td><%= link_to 'Destroy', dye, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New dye', new_dye_path %>

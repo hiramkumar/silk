@@ -1,0 +1,23 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<h1>New vendor_type</h1>
+
+<% form_for(@vendor_type) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= Translate.trans("Name",session[:language])%><br />
+    <%= f.text_field :name %>
+  </p>
+<p>
+    <%= Translate.trans("Status",session[:language])%>
+	<%= f.select :status, [['Active', 'Active'], ['InActive', 'InActive']]%>
+
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', vendor_types_path %>

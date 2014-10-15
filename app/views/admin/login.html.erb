@@ -1,0 +1,35 @@
+<!-- Copyright @ 2012 Fiber Woven.
+This product includes software developed by Fiber Woven Tech.
+All rights reserved --> 
+<div class="depot-form" style=" font-style: italic; font-family: Times New Roman;">
+	<p id="notice"><%= notice %></p>
+    <% form_tag do %>
+    <fieldset>
+        <legend>
+            Please Log In
+        </legend>
+        <div>
+            <label for="name">
+                Name:
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= text_field_tag :name, params[:name] %>
+        </div>
+        <div>
+            <label for="password">
+                Password:
+            </label>
+            <%= password_field_tag :password, params[:password] %>
+        </div>
+        <div>
+    		Language:
+    		<select name="language">
+  			<option value="English">English</option>
+  			<option value="Tamil">தமிழ்</option>
+			</select>
+  		</div>
+        <div>
+            <%= submit_tag "Login" %>
+        </div>
+    </fieldset>
+    <% end %>
+</div>

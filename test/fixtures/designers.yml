@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2012-09-14 15:47:11
+  vendor_id: 1
+  design_id: MyString
+  rate: 1
+  discount: 1
+  amt_to_vendor: 1
+  advance: 1
+  description: MyString
+  due_date: 2012-09-14 15:47:11
+
+two:
+  date: 2012-09-14 15:47:11
+  vendor_id: 1
+  design_id: MyString
+  rate: 1
+  discount: 1
+  amt_to_vendor: 1
+  advance: 1
+  description: MyString
+  due_date: 2012-09-14 15:47:11

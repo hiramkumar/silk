@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  worker_id: 1
+  date: 2012-08-27 14:33:17
+  salary: 1
+  advance_amount: 1
+  raw_warp_to_dyer: MyString
+  raw_silk_to_dyer: MyString
+  coloured_warp_from_dyer: MyString
+  coloured_silk_from_dyer: MyString
+
+two:
+  worker_id: 1
+  date: 2012-08-27 14:33:17
+  salary: 1
+  advance_amount: 1
+  raw_warp_to_dyer: MyString
+  raw_silk_to_dyer: MyString
+  coloured_warp_from_dyer: MyString
+  coloured_silk_from_dyer: MyString

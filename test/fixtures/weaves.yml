@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  worker_id: 1
+  date: 2012-08-27 14:30:27
+  salary: 1
+  advance_amount: 1
+  warp: MyString
+  silk: MyString
+  jari: MyString
+  jute: MyString
+  weaving_cotton: MyString
+  warp_cotton: MyString
+  saree: MyString
+
+two:
+  worker_id: 1
+  date: 2012-08-27 14:30:27
+  salary: 1
+  advance_amount: 1
+  warp: MyString
+  silk: MyString
+  jari: MyString
+  jute: MyString
+  weaving_cotton: MyString
+  warp_cotton: MyString
+  saree: MyString
